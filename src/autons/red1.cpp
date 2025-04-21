@@ -1,4 +1,5 @@
 #include "main.h"
+#include "robot.hpp"
 
 
 // new bot red - teamwork
@@ -17,7 +18,7 @@ void red1(){
     arm.brake();
 
     // get mogo
-    chassis.moveToPoint(-17, 34,4000,{.forwards = false,.maxSpeed=80});
+    chassis.moveToPoint(-17, 34,4000,{.forwards = false,.maxSpeed=70});
     pros::delay(500);
     arm_move=false;
     global_target=100;
@@ -27,10 +28,10 @@ void red1(){
 
     //get 2 rings
     set_intake_speed(127);
-    chassis.turnToPoint(-34,42.5,1000,{.minSpeed=5,.earlyExitRange=3});
-    chassis.moveToPoint(-34,42.5,1000,{.minSpeed=20,.earlyExitRange=3});
-    chassis.turnToPoint(-48,42.5,1000,{.minSpeed=20,.earlyExitRange=3});
-    chassis.moveToPoint(-48,42.5,1000,{.minSpeed=20,.earlyExitRange=3});
+    chassis.turnToPoint(-31,45,1000,{.minSpeed=5,.earlyExitRange=3});
+    chassis.moveToPoint(-31,45,1000,{.minSpeed=20,.earlyExitRange=3});
+    chassis.turnToPoint(-47,45,1000,{.minSpeed=20,.earlyExitRange=2});
+    chassis.moveToPoint(-47,45,1000,{.minSpeed=20,.earlyExitRange=2});
 
     chassis.moveToPoint(-14, 31,1000,{.forwards=false,.minSpeed=20,.earlyExitRange=3});
     chassis.turnToPoint(-36,27,1000,{.minSpeed=20,.earlyExitRange=3});
@@ -47,7 +48,7 @@ void red1(){
     chassis.moveToPoint(10,13,2000,{.minSpeed=5,.earlyExitRange=3});
     pros::Task skills_task2{[=]
     {
-        while(top_distance.get_distance()>100) pros::delay(10);
+        while(intake_distance.get_distance()>100) pros::delay(10);
         pros::delay(500);
         set_intake_speed(0);
     }};

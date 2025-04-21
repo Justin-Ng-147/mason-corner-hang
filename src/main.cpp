@@ -34,7 +34,7 @@ void initialize() {
 	arm_to_pos();
 	arm_control.set_position(0);
 	mogo.set_value(true);
-	twopto.set_value(true);
+	twopto.set_value(false);
 	intake.set_brake_mode_all(pros::motor_brake_mode_e::E_MOTOR_BRAKE_COAST);
 	// sort(1);
 	init_intake();
