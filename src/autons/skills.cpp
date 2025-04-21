@@ -31,7 +31,7 @@ void skills(){
     set_intake_speed(127,false);
     pros::Task skills_task1{[=]
         {
-            while(top_distance.get_distance()>100) pros::delay(10);
+            while(intake_distance.get_distance()>100) pros::delay(10);
             pros::delay(600);
             global_target=7000;
             set_intake_speed(-25);
@@ -53,7 +53,7 @@ void skills(){
     //mogo 1 task that when the ring is on the arm lift the arm up out of the way of other intaked rings
     // pros::Task skills_task1{[=]
     // {
-    //     while(top_distance.get_distance()>100) pros::delay(10);
+    //     while(intake_distance.get_distance()>100) pros::delay(10);
     //     pros::delay(800);
     //     global_target=7000;
     //     set_intake_speed(-25);
@@ -106,7 +106,7 @@ void skills(){
     set_intake_speed(127,false);
     pros::Task skills_task2{[=]
         {
-            while(top_distance.get_distance()>100) pros::delay(10);
+            while(intake_distance.get_distance()>100) pros::delay(10);
             pros::delay(600);
             global_target=7000;
             set_intake_speed(-25);
@@ -146,7 +146,7 @@ void skills(){
     //mogo 2 task that when the ring is on the arm lift the arm up out of the way of other intaked rings
     // pros::Task skills_task2{[=]
     // {
-    //     while(top_distance.get_distance()>100) pros::delay(10);
+    //     while(intake_distance.get_distance()>100) pros::delay(10);
     //     pros::delay(800);
     //     global_target=7000;
     //     set_intake_speed(-25);
@@ -210,7 +210,7 @@ void skills(){
     //put ring in arm
     global_target=3200;
     set_intake_speed(127,false);
-    while(top_distance.get_distance()>100) pros::delay(10);
+    while(intake_distance.get_distance()>100) pros::delay(10);
     pros::delay(800);
     global_target=7000;
     set_intake_speed(-25);
@@ -222,7 +222,7 @@ void skills(){
     {
         while(true){
             if(pros::Task::notify_take(true, 10)) break;
-            if(distance.get_distance() < 100 || top_distance.get_distance() < 100){
+            if(distance.get_distance() < 100 || intake_distance.get_distance() < 100){
                 set_intake_speed(0);
                 break;
             }
@@ -292,7 +292,7 @@ void skills(){
         {
             while(true){
                 if(pros::Task::notify_take(true, 10)) break;
-                if(top_distance.get_distance() < 100){
+                if(intake_distance.get_distance() < 100){
                     pros::delay(400);
                     set_intake_speed(0);
                     break;
