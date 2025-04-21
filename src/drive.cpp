@@ -16,7 +16,7 @@ lemlib::Drivetrain drivetrain(&left,
                               2); //horizontal drift
 
 // lemlib::TrackingWheel horizontal_tracking_wheel(&horizontal_enc,lemlib::Omniwheel::NEW_2, -1.875);
-lemlib::TrackingWheel vertical_tracking_wheel(&vertical_enc,lemlib::Omniwheel::NEW_2, -.25); //-.53125
+lemlib::TrackingWheel vertical_tracking_wheel(&vertical_enc,lemlib::Omniwheel::NEW_2, .1875); //-.53125
 
 lemlib::OdomSensors sensors(&vertical_tracking_wheel,nullptr,nullptr,nullptr,&imu);
 

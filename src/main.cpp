@@ -10,7 +10,7 @@ false: display competition screen to choose different autons
 bool testing = true;
 
 int auton_status = 0;
-int test_auton = -4;
+int test_auton = 1;
 
 
 
@@ -165,7 +165,7 @@ void opcontrol() {
 		#pragma endregion arcade
 
 		if(dir <-120) forward=false;
-
+	
 		#pragma region arm
 		if(master.get_digital(DIGITAL_L1)){
 			if(!arm_pressed){
