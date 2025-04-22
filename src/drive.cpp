@@ -20,20 +20,46 @@ lemlib::TrackingWheel vertical_tracking_wheel(&vertical_enc,lemlib::Omniwheel::N
 
 lemlib::OdomSensors sensors(&vertical_tracking_wheel,nullptr,nullptr,nullptr,&imu);
 
+// Original settings (4.22.2025)
+// lemlib::ControllerSettings lateral_controller(10, // proportional gain (kP)
+//                                               0, // integral gain (kI)
+//                                               60, // derivative gain (kD)
+//                                               3, // anti windup
+//                                               1, // small error range, in inches
+//                                               100, // small error range timeout, in milliseconds
+//                                               3, // large error range, in inches
+//                                               500, // large error range timeout, in milliseconds
+//                                               0 // maximum acceleration (slew)
+// );
+
+// PID tuning test settings (4.22.2025)
 lemlib::ControllerSettings lateral_controller(10, // proportional gain (kP)
                                               0, // integral gain (kI)
                                               60, // derivative gain (kD)
-                                              3, // anti windup
-                                              1, // small error range, in inches
-                                              100, // small error range timeout, in milliseconds
-                                              3, // large error range, in inches
-                                              500, // large error range timeout, in milliseconds
+                                              0, // anti windup
+                                              0, // small error range, in inches
+                                              0, // small error range timeout, in milliseconds
+                                              0, // large error range, in inches
+                                              0, // large error range timeout, in milliseconds
                                               0 // maximum acceleration (slew)
 );
 
-lemlib::ControllerSettings angular_controller(6, // proportional gain (kP)
+// Original settings (4.22.2025)
+// lemlib::ControllerSettings angular_controller(6, // proportional gain (kP)
+//                                               0, // integral gain (kI)
+//                                               60, // derivative gain (kD)
+//                                               3, // anti windup
+//                                               1, // small error range, in degrees
+//                                               100, // small error range timeout, in milliseconds
+//                                               3, // large error range, in degrees
+//                                               300, // large error range timeout, in milliseconds
+//                                               0 // maximum acceleration (slew)
+// );
+
+// PID Tuning test settings (4.22.2025)
+lemlib::ControllerSettings angular_controller(5, // proportional gain (kP)
                                               0, // integral gain (kI)
-                                              60, // derivative gain (kD)
+                                              50, // derivative gain (kD)
                                               3, // anti windup
                                               1, // small error range, in degrees
                                               100, // small error range timeout, in milliseconds
@@ -41,7 +67,6 @@ lemlib::ControllerSettings angular_controller(6, // proportional gain (kP)
                                               300, // large error range timeout, in milliseconds
                                               0 // maximum acceleration (slew)
 );
-
 
 lemlib::Chassis chassis(drivetrain,
                     lateral_controller,
