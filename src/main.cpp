@@ -168,7 +168,7 @@ void opcontrol() {
 	
 		#pragma region arm
 		if(master.get_digital(DIGITAL_L1)){
-			if(arm_control.get_position() < 18000){
+			if(arm_control.get_position() < 15000){
 				if(!arm_pressed){
 					arm.move(127);
 					// intake.move(-127);
@@ -300,6 +300,6 @@ void opcontrol() {
 		}
 		#pragma endregion hang
 
-		pros::delay(20);                               // Run for 20 ms then update
+		pros::delay(10);                               // Run for 20 ms then update
 	}
 }
