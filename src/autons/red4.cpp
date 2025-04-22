@@ -1,7 +1,7 @@
 #include "main.h"
-#include "robot.hpp"
 
-// red teamwork code + for new bot
+
+// new bot red + four ring
 void red4(){
     intake.set_encoder_units_all(MOTOR_ENCODER_ROTATIONS);
     chassis.setPose(0,0,-146);
@@ -39,6 +39,36 @@ void red4(){
             pros::delay(500);
             set_intake_speed(-127);
         }};
+
+    chassis.moveToPoint(53, -6.5, 2000);
+    chassis.swingToHeading(140, lemlib::DriveSide::LEFT, 1000);
+
+    set_intake_speed(127,false);
+    chassis.moveDistance(40,1000);
+    chassis.moveDistance(20,1000,{.forwards=false,.maxSpeed=60,.minSpeed=5,.earlyExitRange=3},false);
+    swiper.set_value(true);
+    chassis.moveDistance(15,1000);
+    // pros::Task red_pos_task2{[=]
+    //     {
+    //         while(intake_distance.get_distance()>50) pros::delay(10);
+    //         pros::delay(500);
+    //         set_intake_speed(0);
+    //     }};
+    chassis.turnToHeading(-45,2000,{.direction = lemlib::AngularDirection::CCW_COUNTERCLOCKWISE},false);
+    set_intake_speed(0);
+    swiper.set_value(false);
+    // chassis.moveDistance(11,1000,{.forwards=false},false);
+    // set_intake_speed(-127);
+    // mogo.set_value(false);
+    // pros::delay(200);
+
+    // touch bar
+    arm_move=false;
+    global_target=13500;
+    pros::delay(500);
+    arm_move=true;
+    arm.move(0);
+    chassis.moveToPoint(12,36,2000,{},false);
     
     return;
     chassis.turnToPoint(42,-5,1000,{.minSpeed=5, .earlyExitRange=3},false);
@@ -66,7 +96,7 @@ void red4(){
 
     // chassis.turnToPoint(42,25,1000,{.minSpeed=5,.earlyExitRange=3});
     global_target=13500;
-    // chassis.moveToPoint(0,40.5,2000,{},false);
+    chassis.moveToPoint(12,36,2000,{},false);
     arm_move=true;
     arm.move(0);
 }
