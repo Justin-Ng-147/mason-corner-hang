@@ -214,9 +214,9 @@ void opcontrol() {
 			// hang_flag = !hang_flag;
 			y_pressed = true;
 			arm_move=false;
-			
+		
 
-			global_target=1200;
+			global_target=2000;
 		}
 		else if(master.get_digital(DIGITAL_Y) != 1 && y_pressed){
 			y_pressed = false;
