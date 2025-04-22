@@ -5,8 +5,8 @@ pros::Motor intake({-7});
 pros::MotorGroup arm({8,-9});
 pros::ADIDigitalOut mogo('A');
 pros::ADIDigitalOut twopto('B');
-pros::ADIDigitalOut swiper('C');
-pros::ADIDigitalOut hangpto('D');
+pros::ADIDigitalOut swiper('D');
+pros::ADIDigitalOut hangpto('C');
 pros::ADIDigitalOut lift('E');
 
 pros::Rotation arm_control(13);

@@ -10,7 +10,7 @@ false: display competition screen to choose different autons
 bool testing = true;
 
 int auton_status = 0;
-int test_auton = 1;
+int test_auton = 4;
 
 
 
@@ -33,7 +33,7 @@ void initialize() {
 
 	arm_to_pos();
 	arm_control.set_position(0);
-	mogo.set_value(true);
+	
 	twopto.set_value(false);
 	intake.set_brake_mode_all(pros::motor_brake_mode_e::E_MOTOR_BRAKE_COAST);
 	// sort(1);
@@ -103,26 +103,26 @@ void competition_initialize() {}
  * from where it left off.
  */
 void autonomous() {
-	// if(testing) run_auton(test_auton);
-	// else run_auton(auton_status);
+	if(testing) run_auton(test_auton);
+	else run_auton(auton_status);
 
-	// Angular PID test block
-	// set position to x:0, y:0, heading:0
-	chassis.setPose(0, 0, 0);
-	// turn to face heading 90 with a very long timeout
-	chassis.turnToHeading(90, 100000);
-	chassis.turnToHeading(180, 100000);
-	chassis.turnToHeading(270, 100000);
-	chassis.turnToHeading(0, 100000);
-	chassis.turnToHeading(180, 100000);
-	chassis.turnToHeading(0, 100000);
+	// // Angular PID test block
+	// // set position to x:0, y:0, heading:0
+	// chassis.setPose(0, 0, 0);
+	// // turn to face heading 90 with a very long timeout
+	// chassis.turnToHeading(90, 100000);
+	// chassis.turnToHeading(180, 100000);
+	// chassis.turnToHeading(270, 100000);
+	// chassis.turnToHeading(0, 100000);
+	// chassis.turnToHeading(180, 100000);
+	// chassis.turnToHeading(0, 100000);
 	
 
 	// Lateral PID test block
 	// // set position to x:0, y:0, heading:0
 	// chassis.setPose(0, 0, 0);
 	// // move 48" forwards
-	// chassis.moveToPoint(0, 48, 10000);
+	// chassis.moveDistance(30, 10000, {}, false);
 }
 
 /**

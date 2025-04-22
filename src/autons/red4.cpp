@@ -1,4 +1,5 @@
 #include "main.h"
+#include "robot.hpp"
 
 // red teamwork code + for new bot
 void red4(){
@@ -6,13 +7,13 @@ void red4(){
     chassis.setPose(0,0,-146);
     left.set_brake_mode_all(pros::motor_brake_mode_e::E_MOTOR_BRAKE_BRAKE);
     right.set_brake_mode_all(pros::motor_brake_mode_e::E_MOTOR_BRAKE_BRAKE);
-    mogo.set_value(true);
+    mogo.set_value(false);
 
     //score ring
-    chassis.moveDistance(6.5,1000);
-    arm.move(127);
-    pros::delay(800);
-    arm.brake();
+    chassis.moveDistance(8,1000);
+    chassis.waitUntil(1);
+    arm_move=false;
+    global_target = 17500;
 
     chassis.moveToPoint(16, 32,4000,{.forwards = false,.maxSpeed=80});
     pros::delay(500);
@@ -21,7 +22,7 @@ void red4(){
     global_target=100;
     while(!mogo_seated() && chassis.isInMotion()) pros::delay(10);
     pros::delay(50);
-    mogo.set_value(false);
+    mogo.set_value(true);
     chassis.cancelMotion();
 
     set_intake_speed(127);
@@ -34,13 +35,14 @@ void red4(){
     chassis.waitUntil(20);
     pros::Task red_pos_task{[=]
         {
-            while(distance.get_distance()>100) pros::delay(10);
-            set_intake_speed(0);
+            while(intake_distance.get_distance()>50) pros::delay(10);
+            pros::delay(500);
+            set_intake_speed(-127);
         }};
     
-
-    chassis.turnToPoint(47,-5,1000,{.minSpeed=5, .earlyExitRange=3},false);
-    chassis.moveToPoint(47,-5,2000,{.minSpeed=5, .earlyExitRange=3});
+    return;
+    chassis.turnToPoint(42,-5,1000,{.minSpeed=5, .earlyExitRange=3},false);
+    chassis.moveToPoint(42,-5,2000,{.minSpeed=5, .earlyExitRange=3});
 
     chassis.turnToHeading(135,1000);
     set_intake_speed(127,false);
@@ -59,12 +61,12 @@ void red4(){
     swiper.set_value(false);
     chassis.moveDistance(11,1000,{.forwards=false},false);
     set_intake_speed(-127);
-    mogo.set_value(true);
+    mogo.set_value(false);
     pros::delay(200);
 
     // chassis.turnToPoint(42,25,1000,{.minSpeed=5,.earlyExitRange=3});
-    global_target=21000;
-    chassis.moveToPoint(0,40.5,2000,{},false);
+    global_target=13500;
+    // chassis.moveToPoint(0,40.5,2000,{},false);
     arm_move=true;
     arm.move(0);
 }

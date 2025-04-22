@@ -1,5 +1,5 @@
 #include "main.h"
-#include "robot.hpp"
+// #include "robot.hpp"
 
 
 // new bot red - teamwork
@@ -9,11 +9,11 @@ void red1(){
     intake.set_encoder_units_all(MOTOR_ENCODER_ROTATIONS);
     left.set_brake_mode_all(pros::motor_brake_mode_e::E_MOTOR_BRAKE_BRAKE);
     right.set_brake_mode_all(pros::motor_brake_mode_e::E_MOTOR_BRAKE_BRAKE);
-    mogo.set_value(true);
+    
 
     //score ring
-    chassis.moveDistance(6.5,1000);
-    arm.move(127);
+    chassis.moveDistance(7,1000);
+    arm.move(90);
     pros::delay(800);
     arm.brake();
 
@@ -24,7 +24,7 @@ void red1(){
     global_target=100;
     while(!mogo_seated() && chassis.isInMotion()) pros::delay(10);
     pros::delay(50);
-    mogo.set_value(false);
+    mogo.set_value(true);
 
     //get 2 rings
     set_intake_speed(127);
@@ -39,19 +39,14 @@ void red1(){
     
     chassis.turnToPoint(-51,-10,1000);
     set_intake_speed(127,false);
-    chassis.moveDistance(40,2000);
+    chassis.moveDistance(40,2000,{.minSpeed=5,.earlyExitRange=3});
     chassis.moveDistance(40,1000);
     chassis.moveDistance(20,1000,{.forwards=false,.minSpeed=5,.earlyExitRange=3},false);
 
     //touch bar
     chassis.turnToPoint(10,13,1000,{.minSpeed=5,.earlyExitRange=3});
     chassis.moveToPoint(10,13,2000,{.minSpeed=5,.earlyExitRange=3});
-    pros::Task skills_task2{[=]
-    {
-        while(intake_distance.get_distance()>100) pros::delay(10);
-        pros::delay(500);
-        set_intake_speed(0);
-    }};
+
     //touch bar
     chassis.turnToHeading(-15,1000,{.minSpeed=5,.earlyExitRange=3});
     chassis.moveDistance(40,1000,{.maxSpeed=40});
