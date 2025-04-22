@@ -10,13 +10,13 @@ void blue1(){
     mogo.set_value(true);
 
     //score ring
-    chassis.moveDistance(6.5,1000);
-    arm.move(127);
+    chassis.moveDistance(8.5,1000);
+    arm.move(100);
     pros::delay(800);
     arm.brake();
 
     // get mogo
-    chassis.moveToPoint(19, 34,4000,{.forwards = false,.maxSpeed=80});
+    chassis.moveToPoint(17, 34,4000,{.forwards = false,.maxSpeed=80});
     pros::delay(500);
     arm_move=false;
     global_target=100;
@@ -26,34 +26,34 @@ void blue1(){
 
     //get 2 rings
     set_intake_speed(127);
-    chassis.turnToPoint(34,41,1000,{.minSpeed=5,.earlyExitRange=3});
-    chassis.moveToPoint(34,41,1000,{.minSpeed=20,.earlyExitRange=3});
-    chassis.turnToPoint(49,41,1000,{.minSpeed=20,.earlyExitRange=3});
-    chassis.moveToPoint(49,41,1000,{.minSpeed=20,.earlyExitRange=3});
+    chassis.turnToPoint(31,44,1000,{.minSpeed=5,.earlyExitRange=3});
+    chassis.moveToPoint(31,44,1000,{.minSpeed=20,.earlyExitRange=3});
+    chassis.turnToPoint(47,44,1000,{.minSpeed=20,.earlyExitRange=3});
+    chassis.moveToPoint(47,44,1000,{.minSpeed=20,.earlyExitRange=3});
 
-    chassis.moveToPoint(14, 28,1000,{.forwards=false,.minSpeed=20,.earlyExitRange=3});
-    chassis.turnToPoint(36,26,1000,{.minSpeed=20,.earlyExitRange=3});
-    fast_move(36,26,2000,true);
+    chassis.moveToPoint(14, 31,1000,{.forwards=false,.minSpeed=20,.earlyExitRange=3});
+    chassis.turnToPoint(36,27,1000,{.minSpeed=20,.earlyExitRange=3});
+    fast_move(36,27,2000,true);
 
     chassis.turnToPoint(52,-10,1000);
     set_intake_speed(127,false);
-    chassis.moveDistance(38,2000);
+    chassis.moveDistance(40,2000);
     chassis.moveDistance(40,1000);
     chassis.moveDistance(20,1000,{.forwards=false,.minSpeed=5,.earlyExitRange=3},false);
     // chassis.moveDistance(15,1000);
     // chassis.moveDistance(10,1000,{.forwards=false,.maxSpeed=60,.minSpeed=5,.earlyExitRange=3});
 
     //touch bar
-    chassis.turnToPoint(-9,14,1000,{.minSpeed=5,.earlyExitRange=3});
-    chassis.moveToPoint(-9,14,2000,{.minSpeed=5,.earlyExitRange=3});
-    pros::Task skills_task2{[=]
-    {
-        while(intake_distance.get_distance()>100) pros::delay(10);
-        pros::delay(500);
-        set_intake_speed(0);
-    }};
+    chassis.turnToPoint(-10,13,1000,{.minSpeed=5,.earlyExitRange=3});
+    chassis.moveToPoint(-10,13,2000,{.minSpeed=5,.earlyExitRange=3});
+    // pros::Task skills_task2{[=]
+    // {
+    //     while(intake_distance.get_distance()>100) pros::delay(10);
+    //     pros::delay(500);
+    //     set_intake_speed(0);
+    // }};
     //touch bar
-    chassis.turnToHeading(17,1000,{.minSpeed=5,.earlyExitRange=3});
+    chassis.turnToHeading(15,1000,{.minSpeed=5,.earlyExitRange=3});
     chassis.moveDistance(40,1000,{.maxSpeed=40});
 
 }
