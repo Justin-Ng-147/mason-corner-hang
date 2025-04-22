@@ -10,7 +10,7 @@ false: display competition screen to choose different autons
 bool testing = true;
 
 int auton_status = 0;
-int test_auton = 1;
+int test_auton = -6;
 
 
 
@@ -34,7 +34,7 @@ void initialize() {
 	arm_to_pos();
 	arm_control.set_position(0);
 	mogo.set_value(true);
-	twopto.set_value(true);
+	twopto.set_value(false);
 	intake.set_brake_mode_all(pros::motor_brake_mode_e::E_MOTOR_BRAKE_COAST);
 	// sort(1);
 	init_intake();
@@ -168,18 +168,24 @@ void opcontrol() {
 	
 		#pragma region arm
 		if(master.get_digital(DIGITAL_L1)){
-			if(!arm_pressed){
+			if(arm_control.get_position() < 18000){
+				if(!arm_pressed){
+					arm.move(127);
+					// intake.move(-127);
+					set_intake_speed(-25);
+					pros::delay(40);
+					// intake.move(0);
+					set_intake_speed(0);
+					arm_pressed = true;
+				}
+				arm_move = true;
 				arm.move(127);
-				// intake.move(-127);
-				set_intake_speed(-25);
-				pros::delay(40);
-				// intake.move(0);
-				set_intake_speed(0);
-				arm_pressed = true;
+				global_target=1;
 			}
-			arm_move = true;
-			arm.move(127);
-			global_target=1;
+			else{
+				arm.brake();
+				global_target=1;
+			}
 		}
 		else if(master.get_digital(DIGITAL_L2)){
 			arm_move = true;
