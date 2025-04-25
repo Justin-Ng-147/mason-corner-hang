@@ -14,7 +14,7 @@ void blue6(){
     // pros::delay(800);
     // arm.brake();
 
-    chassis.moveToPoint(-16, 32,4000,{.forwards = false,.maxSpeed=80});
+    chassis.moveToPoint(-17, 32,4000,{.forwards = false,.maxSpeed=80});
     pros::delay(500);
     arm_move=false;
 
